@@ -11,4 +11,7 @@ import { ProductComponent } from '../../components/product/product.component';
 })
 export class ListComponent {
 
+  fromChildHandler(message: string) {
+    console.log('fromChildHandler', message);
+  }
 }
