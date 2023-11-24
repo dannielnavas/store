@@ -25,4 +25,28 @@ export class CounterComponent {
     console.log(changes);
     console.log('-'.repeat(50));
   }
+
+  ngOnInit() {
+    // after rendering
+    // una vez
+    // async code here
+    console.log('ngOnInit');
+    console.log('duration ',this.duration);
+    console.log('message', this.messagges);
+    console.log('-'.repeat(50));
+  }
+
+  ngAfterViewInit() {
+    // after rendering
+    // Cuando los hijos se renderizan
+    console.log('ngAfterViewInit');
+    console.log('-'.repeat(50));
+  }
+
+  ngOnDestroy() {
+    // before destroy
+    // async code here
+    console.log('ngOnDestroy');
+    console.log('-'.repeat(50));
+  }
 }
