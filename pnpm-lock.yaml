@@ -35,6 +35,9 @@ dependencies:
   tslib:
     specifier: ^2.3.0
     version: 2.6.2
+  wavesurfer.js:
+    specifier: 7.4.6
+    version: 7.4.6
   zone.js:
     specifier: ~0.14.2
     version: 0.14.2
@@ -7383,6 +7386,10 @@ packages:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
     dev: true
+
+  /wavesurfer.js@7.4.6:
+    resolution: {integrity: sha512-uQDw132ucreP6rqJKou9vWe59QPZQ4PGftQml58JbwMzna4pJjUxXDZv+ubV7LJBkX1kaO/9BEmBRpmR64O3rQ==}
+    dev: false
 
   /wbuf@1.7.3:
     resolution: {integrity: sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==}
