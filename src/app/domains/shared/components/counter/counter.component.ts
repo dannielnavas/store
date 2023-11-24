@@ -12,7 +12,7 @@ export class CounterComponent {
   @Input({ required: true }) duration: number = 0;
   @Input({ required: true }) messagges: string = '';
 
-  construntor() {
+  constructor() {
     // No async code here
     // before rendering
     console.log('constructor');
