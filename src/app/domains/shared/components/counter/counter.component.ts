@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, signal } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -11,6 +11,9 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 export class CounterComponent {
   @Input({ required: true }) duration: number = 0;
   @Input({ required: true }) messagges: string = '';
+  counter = signal(0);
+  counterRef: number |
+    undefined;
 
   constructor() {
     // No async code here
@@ -43,6 +46,12 @@ export class CounterComponent {
     console.log('duration ',this.duration);
     console.log('message', this.messagges);
     console.log('-'.repeat(50));
+
+    this.counterRef = setInterval(() => {
+      console.log('counter', this.counter);
+      this.counter.update((statePrev: number) => statePrev + 1);
+    }
+    , this.duration);
   }
 
   ngAfterViewInit() {
@@ -57,6 +66,7 @@ export class CounterComponent {
     // async code here
     console.log('ngOnDestroy');
     console.log('-'.repeat(50));
+    clearInterval(this.counterRef);
   }
 
   doSomething() {
