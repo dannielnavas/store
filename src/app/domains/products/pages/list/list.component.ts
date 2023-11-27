@@ -13,6 +13,7 @@ import { ProductComponent } from '../../components/product/product.component';
 })
 export class ListComponent {
   products = signal<Product[]>([]);
+  cart = signal<Product[]>([]);
 
   constructor() {
     const initProducts: Product[] = [
@@ -45,7 +46,7 @@ export class ListComponent {
     this.products.set(initProducts);
   }
 
-  fromChildHandler(message: string) {
-    console.log('fromChildHandler', message);
+  addToCart(prduct: Product) {
+    this.cart.update((prev) => [...prev, prduct]);
   }
 }
