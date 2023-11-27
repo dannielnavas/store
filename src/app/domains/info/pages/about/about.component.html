@@ -1,23 +1,33 @@
-<div class="px-10">
-  <h1 class="text-lg font-bold">About</h1>
-  <p class="text-xs">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet facilis illo omnis <span highlight>doloribus natus neque dolore nulla </span> voluptatum consequatur eum, doloremque quia voluptatem, rerum vel aliquid quidem commodi veritatis ad?
-  </p>
-  <p class="text-xs"> Numero de clientes:
-    <app-counter [duration]="duration()" [messagges]="messagges()" *ngIf="duration() > 0" />
-  </p>
+
+
+
+<div class="container mx-auto">
+  <app-header />
   <div>
-    <app-wave-audio [url]="'/assets/hardcore-rock-pop-rock_112423.mp3'" />
+    <div class="px-10">
+      <h1 class="text-lg font-bold">About</h1>
+      <p class="text-xs">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet facilis illo omnis <span highlight>doloribus natus
+          neque dolore nulla </span> voluptatum consequatur eum, doloremque quia voluptatem, rerum vel aliquid quidem
+        commodi veritatis ad?
+      </p>
+      <p class="text-xs"> Numero de clientes:
+        <app-counter [duration]="duration()" [messagges]="messagges()" *ngIf="duration() > 0" />
+      </p>
+      <div>
+        <app-wave-audio [url]="'/assets/hardcore-rock-pop-rock_112423.mp3'" />
+      </div>
+    </div>
+
+    <!-- <p> -->
+    <!-- <input type="number" [value]="duration()" id="" (change)="changeDuration($event)"> -->
+    <!-- </p> -->
+    <!-- <p> -->
+    <!-- <input type="text" [value]="messagges()" id="" (change)="changeMessagges($event)"> -->
+    <!-- </p> -->
+
+    <!-- <p> -->
+    <!-- <app-counter [duration]="duration()" [messagges]="messagges()" *ngIf="duration() > 0" /> -->
+    <!-- </p> -->
   </div>
 </div>
-
- <!-- <p> -->
-  <!-- <input type="number" [value]="duration()" id="" (change)="changeDuration($event)"> -->
-<!-- </p> -->
-<!-- <p> -->
-  <!-- <input type="text" [value]="messagges()" id="" (change)="changeMessagges($event)"> -->
-<!-- </p> -->
-
-<!-- <p> -->
-  <!-- <app-counter [duration]="duration()" [messagges]="messagges()" *ngIf="duration() > 0" /> -->
-<!-- </p> -->
