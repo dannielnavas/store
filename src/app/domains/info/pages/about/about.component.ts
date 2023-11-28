@@ -13,8 +13,8 @@ import { WaveAudioComponent } from '../../components/wave-audio/wave-audio.compo
     CounterComponent,
     WaveAudioComponent,
     HighlightDirective,
-    HeaderComponent,
-  ],
+    HeaderComponent
+],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
 })

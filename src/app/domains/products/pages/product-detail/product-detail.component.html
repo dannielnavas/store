@@ -6,8 +6,10 @@
     </div>
     <div class="flex items-center justify-center mt-1">
       <div class="grid grid-cols-3 gap-1">
-        <img alt="ecommerce" class="object-cover object-center rounded border-2 border-gray-200" *ngFor="let image of product()?.images"
-          [src]="image" (click)="changeCover(image)" [class.border-red-400]="image === cover()"  />
+        @for (image of product()?.images; track image) {
+          <img alt="ecommerce" class="object-cover object-center rounded border-2 border-gray-200"
+            [src]="image" (click)="changeCover(image)" [class.border-red-400]="image === cover()"  />
+        }
       </div>
     </div>
   </div>

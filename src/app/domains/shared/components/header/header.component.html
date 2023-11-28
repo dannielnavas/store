@@ -31,9 +31,6 @@
     </div>
   </div>
 </nav>
-
-
-
 <div
   class="fixed border-l-4 top-0 right-0 bg-red z-40 w-72 h-screen p-4 overflow-y-auto transition-transform bg-white" [class.translate-x-full]="hideSideMenu()">
   <div class="flex justify-between items-center">
@@ -44,21 +41,20 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
-
-
-
   </div>
-
   <div class="pt-4 flex flex-col">
-    <div class="flex justify-between items-center space-y-2" *ngFor="let product of cart()">
-      <div class="flex space-x-2 items-center">
-        <img class="w-6 h-6" [src]="product.images[0]" [alt]="product.title">
-        <h3>{{ product.title }}</h3>
+    @for (product of cart(); track product) {
+      <div class="flex justify-between items-center space-y-2">
+        <div class="flex space-x-2 items-center">
+          <img class="w-6 h-6" [src]="product.images[0]" [alt]="product.title">
+            <h3>{{ product.title }}</h3>
+          </div>
+          <p>{{ product.price }}</p>
+        </div>
+      }
+      <div>
+        <p>Total: {{total()}}</p>
       </div>
-      <p>{{ product.price }}</p>
-    </div>
-    <div>
-      <p>Total: {{total()}}</p>
     </div>
   </div>
-</div>
+  

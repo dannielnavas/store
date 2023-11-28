@@ -15,8 +15,8 @@ import { ProductComponent } from '../../components/product/product.component';
     CommonModule,
     ProductComponent,
     HeaderComponent,
-    RouterLinkWithHref,
-  ],
+    RouterLinkWithHref
+],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
 })
