@@ -8,7 +8,7 @@ export interface Product {
   creationAt: string;
 }
 
-interface Category {
+export interface Category {
   id: number;
   name: string;
   image: string;
