@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, ViewChild, signal } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, signal, AfterViewInit } from '@angular/core';
 
 import WaveSurfer from 'wavesurfer.js';
 
@@ -9,7 +9,7 @@ import WaveSurfer from 'wavesurfer.js';
     templateUrl: './wave-audio.component.html',
     styleUrl: './wave-audio.component.css'
 })
-export class WaveAudioComponent {
+export class WaveAudioComponent implements AfterViewInit {
   @Input({ required: true }) url!: string;
   @ViewChild('wave') waveform!: ElementRef;
   private ws!: WaveSurfer;

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges, signal } from '@angular/core';
+import { Component, Input, SimpleChanges, signal, OnChanges, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 
 @Component({
     selector: 'app-counter',
@@ -7,9 +7,9 @@ import { Component, Input, SimpleChanges, signal } from '@angular/core';
     templateUrl: './counter.component.html',
     styleUrl: './counter.component.css'
 })
-export class CounterComponent {
-  @Input({ required: true }) duration: number = 0;
-  @Input({ required: true }) messagges: string = '';
+export class CounterComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+  @Input({ required: true }) duration = 0;
+  @Input({ required: true }) messagges = '';
   counter = signal(0);
   counterRef: number |
     undefined;

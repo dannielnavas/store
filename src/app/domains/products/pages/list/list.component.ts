@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges, inject, signal } from '@angular/core';
+import { Component, Input, SimpleChanges, inject, signal, OnInit, OnChanges } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
-import { HeaderComponent } from '@shared/components/header/header.component';
 import { Category, Product } from '@shared/models/product.model';
 import { CartService } from '@shared/services/cart.service';
 import { CategoryService } from '@shared/services/category.service';
@@ -13,13 +12,12 @@ import { ProductComponent } from '../../components/product/product.component';
     imports: [
         CommonModule,
         ProductComponent,
-        HeaderComponent,
         RouterLinkWithHref
     ],
     templateUrl: './list.component.html',
     styleUrl: './list.component.css'
 })
-export default class ListComponent {
+export default class ListComponent implements OnInit, OnChanges {
   products = signal<Product[]>([]);
   categories = signal<Category[]>([]);
   private cartService = inject(CartService);
