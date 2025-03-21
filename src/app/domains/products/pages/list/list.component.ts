@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges, inject, signal, OnInit, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
 import { Category, Product } from '@shared/models/product.model';
 import { CartService } from '@shared/services/cart.service';
@@ -8,14 +15,10 @@ import { ProductService } from '@shared/services/product.service';
 import { ProductComponent } from '../../components/product/product.component';
 
 @Component({
-    selector: 'app-list',
-    imports: [
-        CommonModule,
-        ProductComponent,
-        RouterLinkWithHref
-    ],
-    templateUrl: './list.component.html',
-    styleUrl: './list.component.css'
+  selector: 'app-list',
+  imports: [CommonModule, ProductComponent, RouterLinkWithHref],
+  templateUrl: './list.component.html',
+  styleUrl: './list.component.css',
 })
 export default class ListComponent implements OnInit, OnChanges {
   products = signal<Product[]>([]);
@@ -29,8 +32,8 @@ export default class ListComponent implements OnInit, OnChanges {
     this.getCategories();
   }
 
-  ngOnChanges(change: SimpleChanges) {
-      this.getProducts();
+  ngOnChanges() {
+    this.getProducts();
   }
 
   private getProducts() {
