@@ -4,11 +4,10 @@ import { RouterLinkActive, RouterLinkWithHref } from '@angular/router';
 import { CartService } from '@shared/services/cart.service';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, RouterLinkWithHref, RouterLinkActive],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+    selector: 'app-header',
+    imports: [CommonModule, RouterLinkWithHref, RouterLinkActive],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.css'
 })
 export class HeaderComponent {
   hideSideMenu = signal(true);

@@ -9,16 +9,15 @@ import { ProductService } from '@shared/services/product.service';
 import { ProductComponent } from '../../components/product/product.component';
 
 @Component({
-  selector: 'app-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ProductComponent,
-    HeaderComponent,
-    RouterLinkWithHref
-],
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.css',
+    selector: 'app-list',
+    imports: [
+        CommonModule,
+        ProductComponent,
+        HeaderComponent,
+        RouterLinkWithHref
+    ],
+    templateUrl: './list.component.html',
+    styleUrl: './list.component.css'
 })
 export default class ListComponent {
   products = signal<Product[]>([]);
