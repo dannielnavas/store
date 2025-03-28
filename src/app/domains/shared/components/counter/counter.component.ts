@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
   Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
   SimpleChanges,
   signal,
-  OnChanges,
-  OnInit,
-  AfterViewInit,
-  OnDestroy,
 } from '@angular/core';
 
 @Component({
@@ -20,7 +20,7 @@ export class CounterComponent
   implements OnChanges, OnInit, AfterViewInit, OnDestroy
 {
   @Input({ required: true }) duration = 0;
-  @Input({ required: true }) messagges = '';
+  @Input({ required: true }) messages = '';
   counter = signal(0);
   counterRef: number | undefined;
 
@@ -53,7 +53,7 @@ export class CounterComponent
     // async code here
     console.log('ngOnInit');
     console.log('duration ', this.duration);
-    console.log('message', this.messagges);
+    console.log('message', this.messages);
     console.log('-'.repeat(50));
 
     this.counterRef = setInterval(() => {
