@@ -1,18 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges, signal, OnChanges, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  SimpleChanges,
+  signal,
+  OnChanges,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+} from '@angular/core';
 
 @Component({
-    selector: 'app-counter',
-    imports: [CommonModule],
-    templateUrl: './counter.component.html',
-    styleUrl: './counter.component.css'
+  selector: 'app-counter',
+  imports: [CommonModule],
+  templateUrl: './counter.component.html',
+  styleUrl: './counter.component.css',
 })
-export class CounterComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+export class CounterComponent
+  implements OnChanges, OnInit, AfterViewInit, OnDestroy
+{
   @Input({ required: true }) duration = 0;
   @Input({ required: true }) messagges = '';
   counter = signal(0);
-  counterRef: number |
-    undefined;
+  counterRef: number | undefined;
 
   constructor() {
     // No async code here
@@ -32,7 +42,7 @@ export class CounterComponent implements OnChanges, OnInit, AfterViewInit, OnDes
     // if (!duration) return;
     // this.doSomething();
 
-    if(duration && duration.currentValue !== duration.previousValue) {
+    if (duration && duration.currentValue !== duration.previousValue) {
       this.doSomething();
     }
   }
@@ -42,15 +52,14 @@ export class CounterComponent implements OnChanges, OnInit, AfterViewInit, OnDes
     // una vez
     // async code here
     console.log('ngOnInit');
-    console.log('duration ',this.duration);
+    console.log('duration ', this.duration);
     console.log('message', this.messagges);
     console.log('-'.repeat(50));
 
     this.counterRef = setInterval(() => {
       console.log('counter', this.counter);
       this.counter.update((statePrev: number) => statePrev + 1);
-    }
-    , this.duration);
+    }, this.duration);
   }
 
   ngAfterViewInit() {

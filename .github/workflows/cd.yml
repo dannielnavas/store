@@ -20,7 +20,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
       - name: Crear archivo de configuración para AppRunner
-        run:  |
+        run: |
           echo '{
             "ServiceArn": "${{ vars.AWS_APPRUNNER_ARN}}",
             "SourceConfiguration": {

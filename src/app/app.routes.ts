@@ -19,13 +19,16 @@ export const routes: Routes = [
       {
         path: 'product/:id',
         loadComponent: () =>
-          import('./domains/products/pages/product-detail/product-detail.component'),
+          import(
+            './domains/products/pages/product-detail/product-detail.component'
+          ),
       },
     ],
   },
 
   {
     path: '**',
-    loadComponent: () => import('./domains/info/pages/not-found/not-found.component'),
+    loadComponent: () =>
+      import('./domains/info/pages/not-found/not-found.component'),
   },
 ];

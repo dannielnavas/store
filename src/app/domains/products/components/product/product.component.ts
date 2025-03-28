@@ -6,10 +6,10 @@ import { ReversePipe } from '@shared/pipes/reverse.pipe';
 import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
 
 @Component({
-    selector: 'app-product',
-    imports: [CommonModule, TimeAgoPipe, ReversePipe, RouterLinkWithHref],
-    templateUrl: './product.component.html',
-    styleUrl: './product.component.css'
+  selector: 'app-product',
+  imports: [CommonModule, TimeAgoPipe, ReversePipe, RouterLinkWithHref],
+  templateUrl: './product.component.html',
+  styleUrl: './product.component.css',
 })
 export class ProductComponent {
   // @Input({ required: true }) image: string = '';

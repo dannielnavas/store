@@ -5,10 +5,10 @@ import { CartService } from '@shared/services/cart.service';
 import { ProductService } from '@shared/services/product.service';
 
 @Component({
-    selector: 'app-product-detail',
-    imports: [CommonModule],
-    templateUrl: './product-detail.component.html',
-    styleUrl: './product-detail.component.css'
+  selector: 'app-product-detail',
+  imports: [CommonModule],
+  templateUrl: './product-detail.component.html',
+  styleUrl: './product-detail.component.css',
 })
 export default class ProductDetailComponent implements OnInit {
   @Input() id?: string;

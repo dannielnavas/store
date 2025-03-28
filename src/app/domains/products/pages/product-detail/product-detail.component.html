@@ -1,34 +1,49 @@
-<div class="w-full flex space-x-10">
-  <div class="flex flex-col w-1/3">
+<div class="flex w-full space-x-10">
+  <div class="flex w-1/3 flex-col">
     <div class="w-full rounded border border-gray-200">
-      <img alt="e-commerce" class="w-full object-cover object-center"
-        [src]="cover()" />
+      <img
+        alt="e-commerce"
+        class="w-full object-cover object-center"
+        [src]="cover()"
+      />
     </div>
-    <div class="flex items-center justify-center mt-1">
+    <div class="mt-1 flex items-center justify-center">
       <div class="grid grid-cols-3 gap-1">
         @for (image of product()?.images; track image) {
           <!-- tabindex 0 que se puede hacer focus
           role button para que se pueda hacer click -->
-          <img alt="e-commerce" class="object-cover object-center rounded border-2 border-gray-200"
-          tabindex="0"
-          role="button"
-          aria-label="Change cover"
-          (keydown.enter)="changeCover(image)"
-            [src]="image" (click)="changeCover(image)" [class.border-red-400]="image === cover()"  />
+          <img
+            alt="e-commerce"
+            class="rounded border-2 border-gray-200 object-cover object-center"
+            tabindex="0"
+            role="button"
+            aria-label="Change cover"
+            (keydown.enter)="changeCover(image)"
+            [src]="image"
+            (click)="changeCover(image)"
+            [class.border-red-400]="image === cover()"
+          />
         }
       </div>
     </div>
   </div>
   <div class="mt-5 w-full">
-    <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ product()?.category?.name | uppercase }}</h2>
-    <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
+    <h2 class="title-font text-sm tracking-widest text-gray-500">
+      {{ product()?.category?.name | uppercase }}
+    </h2>
+    <h1 class="title-font mb-1 text-3xl font-medium text-gray-900">
       {{ product()?.title }}
     </h1>
     <p class="leading-relaxed">
       {{ product()?.description }}
     </p>
-    <p class="title-font font-medium text-2xl text-gray-900 mt-5">{{ product()?.price | currency: '$': 'symbol':'1.0' }}</p>
-    <button class="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded" (click)="addToCart()">
+    <p class="title-font mt-5 text-2xl font-medium text-gray-900">
+      {{ product()?.price | currency: "$" : "symbol" : "1.0" }}
+    </p>
+    <button
+      class="flex rounded border-0 bg-red-500 px-6 py-2 text-white hover:bg-red-600 focus:outline-none"
+      (click)="addToCart()"
+    >
       Add To Cart
     </button>
   </div>
