@@ -7,9 +7,12 @@
     <div class="flex items-center justify-center mt-1">
       <div class="grid grid-cols-3 gap-1">
         @for (image of product()?.images; track image) {
+          <!-- tabindex 0 que se puede hacer focus
+          role button para que se pueda hacer click -->
           <img alt="e-commerce" class="object-cover object-center rounded border-2 border-gray-200"
           tabindex="0"
           role="button"
+          aria-label="Change cover"
           (keydown.enter)="changeCover(image)"
             [src]="image" (click)="changeCover(image)" [class.border-red-400]="image === cover()"  />
         }
