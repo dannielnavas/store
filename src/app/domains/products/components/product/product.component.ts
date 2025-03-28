@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
 import { Product } from '@shared/models/product.model';
@@ -7,7 +7,13 @@ import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule, TimeAgoPipe, ReversePipe, RouterLinkWithHref],
+  imports: [
+    CommonModule,
+    TimeAgoPipe,
+    ReversePipe,
+    RouterLinkWithHref,
+    NgOptimizedImage,
+  ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
