@@ -3,15 +3,18 @@
   <p class="text-xs">
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet facilis
     illo omnis
-    <span highlight>doloribus natus neque dolore nulla </span> voluptatum
+    <span appHighlight>doloribus natus neque dolore nulla </span> voluptatum
     consequatur eum, doloremque quia voluptatem, rerum vel aliquid quidem
     commodi veritatis ad?
   </p>
   <p class="text-xs">
     Numero de clientes:
-    @if (duration() > 0) {
-      <app-counter [duration]="duration()" [messages]="messages()" />
-    }
+  </p>
+  @if (duration() > 0) {
+    <app-counter [duration]="duration()" [messages]="messages()" />
+  }
+  <p>
+    <input type="range" min="0" max="100" [(ngModel)]="duration">
   </p>
   <div>
     <app-wave-audio [url]="'/assets/hardcore-rock-pop-rock_112423.mp3'" />

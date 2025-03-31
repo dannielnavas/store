@@ -1,11 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CounterComponent } from '@shared/components/counter/counter.component';
+import { HighlightDirective } from '@shared/directives/highlight.directive';
 import { WaveAudioComponent } from '../../components/wave-audio/wave-audio.component';
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule, CounterComponent, WaveAudioComponent],
+  imports: [
+    CommonModule,
+    CounterComponent,
+    WaveAudioComponent,
+    HighlightDirective,
+    FormsModule,
+  ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
 })
