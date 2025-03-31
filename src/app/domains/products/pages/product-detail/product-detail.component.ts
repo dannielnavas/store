@@ -11,15 +11,15 @@ import { ProductService } from '@shared/services/product.service';
   styleUrl: './product-detail.component.css',
 })
 export default class ProductDetailComponent implements OnInit {
-  @Input() id?: string;
+  @Input() slug?: string;
   private productServices = inject(ProductService);
   private cartService = inject(CartService);
   product = signal<Product | null>(null);
   cover = signal<string>('');
 
   ngOnInit() {
-    if (this.id) {
-      this.productServices.getOne(this.id).subscribe({
+    if (this.slug) {
+      this.productServices.getOneBySlug(this.slug).subscribe({
         next: product => {
           this.product.set(product);
           if (product?.images && product.images.length > 0) {
