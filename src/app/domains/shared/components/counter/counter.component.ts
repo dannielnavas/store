@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   Component,
-  Input,
-  OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges,
+  computed,
+  effect,
+  input,
   signal,
 } from '@angular/core';
 
@@ -16,11 +16,10 @@ import {
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.css',
 })
-export class CounterComponent
-  implements OnChanges, OnInit, AfterViewInit, OnDestroy
-{
-  @Input({ required: true }) duration = 0;
-  @Input({ required: true }) messages = '';
+export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
+  duration = input.required<number>();
+  dobleDuration = computed(() => this.duration() * 2);
+  messages = input.required<string>();
   counter = signal(0);
   counterRef: number | undefined;
 
@@ -29,37 +28,48 @@ export class CounterComponent
     // before rendering
     console.log('constructor');
     console.log('-'.repeat(50));
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    // before and during rendering
-    console.log('ngOnChanges');
-    console.log(changes);
-    console.log('-'.repeat(50));
-
-    const duration = changes['duration'];
-    console.log('duration', duration);
-    // if (!duration) return;
-    // this.doSomething();
-
-    if (duration && duration.currentValue !== duration.previousValue) {
+    // vigila el signal de duration
+    effect(() => {
+      this.duration();
       this.doSomething();
-    }
+    });
+    // vigila el signal de messages
+    effect(() => {
+      this.messages();
+      this.doSomethingTwo();
+    });
   }
+
+  // es un solo método para leer todos los valors
+  // ngOnChanges(changes: SimpleChanges) {
+  //   // before and during rendering
+  //   console.log('ngOnChanges');
+  //   console.log(changes);
+  //   console.log('-'.repeat(50));
+
+  //   const duration = changes['duration'];
+  //   console.log('duration', duration);
+  //   // if (!duration) return;
+  //   // this.doSomething();
+
+  //   if (duration && duration.currentValue !== duration.previousValue) {
+  //     this.doSomething();
+  //   }
+  // }
 
   ngOnInit() {
     // after rendering
     // una vez
     // async code here
     console.log('ngOnInit');
-    console.log('duration ', this.duration);
-    console.log('message', this.messages);
+    console.log('duration ', this.duration());
+    console.log('message', this.messages());
     console.log('-'.repeat(50));
 
     this.counterRef = setInterval(() => {
       console.log('counter', this.counter);
       this.counter.update((statePrev: number) => statePrev + 1);
-    }, this.duration);
+    }, this.duration());
   }
 
   ngAfterViewInit() {
@@ -79,6 +89,11 @@ export class CounterComponent
 
   doSomething() {
     console.log('doSomething');
+    console.log('-'.repeat(50));
+  }
+
+  doSomethingTwo() {
+    console.log('Message');
     console.log('-'.repeat(50));
   }
 }
