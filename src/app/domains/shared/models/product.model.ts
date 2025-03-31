@@ -6,6 +6,7 @@ export interface Product {
   category: Category;
   images: string[];
   creationAt: string;
+  slug: string;
 }
 
 export interface Category {
