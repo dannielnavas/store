@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
-  Input,
   ViewChild,
   signal,
   AfterViewInit,
+  input
 } from '@angular/core';
 
 import WaveSurfer from 'wavesurfer.js';
@@ -17,14 +17,14 @@ import WaveSurfer from 'wavesurfer.js';
   styleUrl: './wave-audio.component.css',
 })
 export class WaveAudioComponent implements AfterViewInit {
-  @Input({ required: true }) url!: string;
+  readonly url = input.required<string>();
   @ViewChild('wave') waveform!: ElementRef;
   private ws!: WaveSurfer;
   isPlaying = signal(false); // signal is a function that returns a signal
 
   ngAfterViewInit() {
     this.ws = WaveSurfer.create({
-      url: this.url,
+      url: this.url(),
       container: this.waveform.nativeElement,
     });
     this.ws.on('play', () => (this.isPlaying = signal(true)));

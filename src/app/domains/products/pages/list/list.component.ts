@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  Input,
   OnChanges,
   OnInit,
   inject,
   signal,
+  input
 } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
 import { Category, Product } from '@shared/models/product.model';
@@ -26,7 +26,7 @@ export default class ListComponent implements OnInit, OnChanges {
   private cartService = inject(CartService);
   private productsService = inject(ProductService);
   private categoryService = inject(CategoryService);
-  @Input() slug?: string;
+  readonly slug = input<string>();
 
   ngOnInit() {
     this.getCategories();
@@ -38,7 +38,7 @@ export default class ListComponent implements OnInit, OnChanges {
 
   private getProducts() {
     this.productsService
-      .getProducts({ category_slug: this.slug })
+      .getProducts({ category_slug: this.slug() })
       .subscribe(products => {
         this.products.set(products);
       });

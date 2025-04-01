@@ -17,10 +17,10 @@ import {
   styleUrl: './counter.component.css',
 })
 export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
-  duration = input.required<number>();
-  dobleDuration = computed(() => this.duration() * 2);
-  messages = input.required<string>();
-  counter = signal(0);
+  $duration = input.required<number>({ alias: 'duration' });
+  $dobleDuration = computed(() => this.$duration() * 2);
+  $messages = input.required<string>({ alias: 'messages' });
+  $counter = signal(0);
   counterRef: number | undefined;
 
   constructor() {
@@ -30,12 +30,12 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('-'.repeat(50));
     // vigila el signal de duration
     effect(() => {
-      this.duration();
+      this.$duration();
       this.doSomething();
     });
     // vigila el signal de messages
     effect(() => {
-      this.messages();
+      this.$messages();
       this.doSomethingTwo();
     });
   }
@@ -62,14 +62,14 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
     // una vez
     // async code here
     console.log('ngOnInit');
-    console.log('duration ', this.duration());
-    console.log('message', this.messages());
+    console.log('duration ', this.$duration());
+    console.log('message', this.$messages());
     console.log('-'.repeat(50));
 
     this.counterRef = setInterval(() => {
-      console.log('counter', this.counter);
-      this.counter.update((statePrev: number) => statePrev + 1);
-    }, this.duration());
+      console.log('counter', this.$counter);
+      this.$counter.update((statePrev: number) => statePrev + 1);
+    }, this.$duration());
   }
 
   ngAfterViewInit() {

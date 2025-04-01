@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
 import { Product } from '@shared/models/product.model';
 import { ReversePipe } from '@shared/pipes/reverse.pipe';
@@ -21,12 +21,12 @@ export class ProductComponent {
   // @Input({ required: true }) image: string = '';
   // @Input({ required: true }) price: number = 0;
   // @Input({ required: true }) title: string = '';
-  @Input({ required: true }) product!: Product;
+  readonly product = input.required<Product>();
 
   @Output() addToCart = new EventEmitter();
 
   addCartHandler() {
     console.log('addCartHandler');
-    this.addToCart.emit(this.product);
+    this.addToCart.emit(this.product());
   }
 }

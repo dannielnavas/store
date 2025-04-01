@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, Input, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, input } from '@angular/core';
 import { Product } from '@shared/models/product.model';
 import { CartService } from '@shared/services/cart.service';
 import { ProductService } from '@shared/services/product.service';
@@ -11,15 +11,16 @@ import { ProductService } from '@shared/services/product.service';
   styleUrl: './product-detail.component.css',
 })
 export default class ProductDetailComponent implements OnInit {
-  @Input() slug?: string;
+  readonly slug = input<string>();
   private productServices = inject(ProductService);
   private cartService = inject(CartService);
   product = signal<Product | null>(null);
   cover = signal<string>('');
 
   ngOnInit() {
-    if (this.slug) {
-      this.productServices.getOneBySlug(this.slug).subscribe({
+    const slug = this.slug();
+    if (slug) {
+      this.productServices.getOneBySlug(slug).subscribe({
         next: product => {
           this.product.set(product);
           if (product?.images && product.images.length > 0) {
