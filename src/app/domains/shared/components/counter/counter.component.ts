@@ -7,6 +7,7 @@ import {
   computed,
   effect,
   input,
+  model,
   signal,
 } from '@angular/core';
 
@@ -19,7 +20,9 @@ import {
 export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
   $duration = input.required<number>({ alias: 'duration' });
   $dobleDuration = computed(() => this.$duration() * 2);
-  $messages = input.required<string>({ alias: 'messages' });
+  $messages = model.required<string>({ alias: 'messages' });
+  // $newMessages = linkedSignal(() => this.$messages());
+
   $counter = signal(0);
   counterRef: number | undefined;
 
@@ -95,5 +98,9 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
   doSomethingTwo() {
     console.log('Message');
     console.log('-'.repeat(50));
+  }
+
+  setMessages() {
+    this.$messages.set('Hola');
   }
 }

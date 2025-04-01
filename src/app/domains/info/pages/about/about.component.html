@@ -11,8 +11,9 @@
     Numero de clientes:
   </p>
   @if (duration() > 0) {
-    <app-counter [duration]="duration()" [messages]="messages()" />
+    <app-counter [duration]="duration()" [(messages)]="messages" />
   }
+  <p>{{messages()}}</p>
   <p>
     <input type="range" min="0" max="100" [(ngModel)]="duration">
   </p>
