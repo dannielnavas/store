@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnChanges, inject, input, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { RouterLinkWithHref } from '@angular/router';
 import { Product } from '@shared/models/product.model';
 import { CartService } from '@shared/services/cart.service';
@@ -20,8 +20,13 @@ export default class ListComponent implements OnChanges {
   private categoryService = inject(CategoryService);
 
   products = signal<Product[]>([]);
-  $categories = toSignal(this.categoryService.getAllCategories(), {
-    initialValue: [],
+
+  // $categories = toSignal(this.categoryService.getAllCategories(), {
+  //   initialValue: [],
+  // });
+
+  categoriesResource = rxResource({
+    loader: () => this.categoryService.getAllCategories(),
   });
   readonly slug = input<string>();
 
@@ -58,5 +63,11 @@ export default class ListComponent implements OnChanges {
 
   resetCategories() {
     // this.$categories.set([]); no se puede por restricción
+
+    this.categoriesResource.set([]);
+  }
+
+  reloadCategories() {
+    this.categoriesResource.reload();
   }
 }

@@ -1,10 +1,14 @@
 <div class="mt-5 flex space-x-4">
   <div class="w-80">
+    <p>status: {{categoriesResource.isLoading()}}</p>
+    <p>error: {{categoriesResource.error()}}</p>
+    <button class="" (click)="reloadCategories()">Reload categories</button>
+    <button class="" (click)="resetCategories()">Reset categories</button>
     <ul>
       <li>
         <a routerLink="/">All</a>
       </li>
-      @for (category of $categories(); track category) {
+      @for (category of categoriesResource.value(); track category) {
         <li>
           <a routerLink="/category/{{category.slug}}" >{{
             category.name
