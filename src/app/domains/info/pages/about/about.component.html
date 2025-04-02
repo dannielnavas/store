@@ -20,6 +20,12 @@
   <div>
     <app-wave-audio [url]="'/assets/hardcore-rock-pop-rock_112423.mp3'" />
   </div>
+
+  <p>with init {{$withInit()}}</p>
+  <button class="bg-slate-500" (click)="emitWithInit()">emit with init</button>
+
+  <p>without init {{$withoutInit()}}</p>
+  <button class="bg-slate-500" (click)="emitWithoutInit()">emit without init</button>
 </div>
 <!-- <p> -->
 <!-- <input type="number" [value]="duration()" id="" (change)="changeDuration($event)"> -->
