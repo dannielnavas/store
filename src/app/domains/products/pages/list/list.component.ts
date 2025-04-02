@@ -1,14 +1,8 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  OnChanges,
-  OnInit,
-  inject,
-  signal,
-  input
-} from '@angular/core';
+import { Component, OnChanges, inject, input, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLinkWithHref } from '@angular/router';
-import { Category, Product } from '@shared/models/product.model';
+import { Product } from '@shared/models/product.model';
 import { CartService } from '@shared/services/cart.service';
 import { CategoryService } from '@shared/services/category.service';
 import { ProductService } from '@shared/services/product.service';
@@ -20,17 +14,20 @@ import { ProductComponent } from '../../components/product/product.component';
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
 })
-export default class ListComponent implements OnInit, OnChanges {
-  products = signal<Product[]>([]);
-  categories = signal<Category[]>([]);
+export default class ListComponent implements OnChanges {
   private cartService = inject(CartService);
   private productsService = inject(ProductService);
   private categoryService = inject(CategoryService);
+
+  products = signal<Product[]>([]);
+  $categories = toSignal(this.categoryService.getAllCategories(), {
+    initialValue: [],
+  });
   readonly slug = input<string>();
 
-  ngOnInit() {
-    this.getCategories();
-  }
+  // ngOnInit() {
+  //   this.getCategories();
+  // }
 
   ngOnChanges() {
     this.getProducts();
@@ -43,19 +40,23 @@ export default class ListComponent implements OnInit, OnChanges {
         this.products.set(products);
       });
   }
-
-  private getCategories() {
-    this.categoryService.getAllCategories().subscribe({
-      next: categories => {
-        this.categories.set(categories);
-      },
-      error: err => {
-        console.log(err);
-      },
-    });
-  }
+  // cambiado por el toSignal
+  // private getCategories() {
+  //   this.categoryService.getAllCategories().subscribe({
+  //     next: categories => {
+  //       this.categories.set(categories);
+  //     },
+  //     error: err => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 
   addToCart(prduct: Product) {
     this.cartService.addToCart(prduct);
+  }
+
+  resetCategories() {
+    // this.$categories.set([]); no se puede por restricción
   }
 }
