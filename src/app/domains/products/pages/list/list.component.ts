@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, resource } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { RouterLinkWithHref } from '@angular/router';
 import { Product } from '@shared/models/product.model';
@@ -34,9 +34,16 @@ export default class ListComponent {
   //   initialValue: [],
   // });
 
-  categoriesResource = rxResource({
-    loader: () => this.categoryService.getAllCategories(),
+  // uso con observbles
+  // categoriesResource = rxResource({
+  //   loader: () => this.categoryService.getAllCategories(),
+  // });
+
+  // uso con promesas
+  categoriesResource = resource({
+    loader: () => this.categoryService.getAllPromise(),
   });
+
   readonly slug = input<string>();
 
   // ngOnInit() {
