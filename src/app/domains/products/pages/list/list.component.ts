@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnChanges, inject, input, signal } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { RouterLinkWithHref } from '@angular/router';
 import { Product } from '@shared/models/product.model';
@@ -14,12 +14,21 @@ import { ProductComponent } from '../../components/product/product.component';
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
 })
-export default class ListComponent implements OnChanges {
+export default class ListComponent {
   private cartService = inject(CartService);
   private productsService = inject(ProductService);
   private categoryService = inject(CategoryService);
 
-  products = signal<Product[]>([]);
+  // products = signal<Product[]>([]);
+  // loadingProducts = signal(false);
+  // errorProducts = signal('');
+
+  productsResource = rxResource({
+    request: () => ({
+      category_slug: this.slug(),
+    }),
+    loader: ({ request }) => this.productsService.getProducts(request),
+  });
 
   // $categories = toSignal(this.categoryService.getAllCategories(), {
   //   initialValue: [],
@@ -34,17 +43,24 @@ export default class ListComponent implements OnChanges {
   //   this.getCategories();
   // }
 
-  ngOnChanges() {
-    this.getProducts();
-  }
+  // ngOnChanges() {
+  //   this.getProducts();
+  // }
 
-  private getProducts() {
-    this.productsService
-      .getProducts({ category_slug: this.slug() })
-      .subscribe(products => {
-        this.products.set(products);
-      });
-  }
+  // private getProducts() {
+  //   this.loadingProducts.set(true);
+  //   this.errorProducts.set('');
+  //   this.productsService.getProducts({ category_slug: this.slug() }).subscribe({
+  //     next: products => {
+  //       this.products.set(products);
+  //       this.loadingProducts.set(false);
+  //     },
+  //     error: err => {
+  //       this.errorProducts.set(err.message);
+  //       this.loadingProducts.set(false);
+  //     },
+  //   });
+  // }
   // cambiado por el toSignal
   // private getCategories() {
   //   this.categoryService.getAllCategories().subscribe({
@@ -69,5 +85,13 @@ export default class ListComponent implements OnChanges {
 
   reloadCategories() {
     this.categoriesResource.reload();
+  }
+
+  reloadProducts() {
+    this.productsResource.reload();
+  }
+
+  resetProducts() {
+    this.productsResource.set([]);
   }
 }
