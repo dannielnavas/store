@@ -73,8 +73,8 @@ export default class ListComponent {
   //   });
   // }
 
-  addToCart(prduct: Product) {
-    this.cartService.addToCart(prduct);
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
   }
 
   resetCategories() {
