@@ -16,6 +16,6 @@ export class HeaderComponent {
   total = this.cartService.total;
 
   toogleSideMenu() {
-    this.hideSideMenu.update((prev) => !prev);
+    this.hideSideMenu.update(prev => !prev);
   }
 }

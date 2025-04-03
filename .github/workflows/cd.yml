@@ -1,19 +1,19 @@
-name: "Flujo CD"
-run-name: "Flujo CD"
+name: 'Flujo CD'
+run-name: 'Flujo CD'
 on:
   workflow_dispatch:
     inputs:
       cloud:
-        description: "Proveedor Cloud"
+        description: 'Proveedor Cloud'
         required: true
-        default: "AWS"
-        options: ["AWS", "GCP", "Azure"]
+        default: 'AWS'
+        options: ['AWS', 'GCP', 'Azure']
 jobs:
   aws:
     runs-on: ubuntu-latest
     if: github.event.inputs.cloud == 'AWS'
     steps:
-      - name: "Configurar credenciales de AWS"
+      - name: 'Configurar credenciales de AWS'
         uses: aws-actions/configure-aws-credentials@e1e17a757e536f70e52b5a12b2e8d1d1c60e04ef #v2 #v2.0.0
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -43,20 +43,20 @@ jobs:
       SERVICE_NAME: ${{ vars.GCP_SERVICE_NAME }}
       REGION: ${{ vars.GCP_REGION }}
     steps:
-      - name: "Autenticar en GCP"
+      - name: 'Autenticar en GCP'
         id: auth
         uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d #v1.0.0
         with:
           token_format: access_token
           workload_identity_provider: ${{ env.PROJECT_ID }}
           service_account: ${{ secrets.GCP_SA_KEY }}
-      - name: "Autenticar en Artifact Registry"
+      - name: 'Autenticar en Artifact Registry'
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a #v2 #v2.1.0
         with:
           registry: ${{ vars.GCP.REGISTRY}}
           username: oauth2accesstoken
           password: ${{ steps.auth.outputs.access_token }}
-      - name: "Desplegar en Cloud Run"
+      - name: 'Desplegar en Cloud Run'
         uses: google-github-actions/deploy-cloudrun@9c01af28be5da14b228ba369b7700d22830b35b7 #v1.0.1
         with:
           image: ${{ vars.GCP_REGION }}-${{ vars.GCP.REGISTRY}}/${{ vars.GCP_PROJECT_ID }}/${{ vars.GCP_REPOSITORY_NAME }}/${{ vars.GCP_IMAGE_NAME }}:latest
@@ -67,11 +67,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.inputs.cloud == 'Azure'
     steps:
-      - name: "Autenticar en Azure"
+      - name: 'Autenticar en Azure'
         uses: azure/login@92a5484dfaf04ca78a94597f4f19fea633851fa2 #v1 #v1.4.6
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: "Crear Azure Container Instance"
+      - name: 'Crear Azure Container Instance'
         uses: Azure/aci-deploy@28cafb864979bc5b44cd1f3fd45522727eb5a3db #v1 #v1.1.3
         with:
           resource-group: ${{ vars.AZURE_RESOURCE_NAME }}

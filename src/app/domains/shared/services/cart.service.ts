@@ -12,6 +12,6 @@ export class CartService {
   });
 
   addToCart(product: Product) {
-    this.cart.update((prev) => [...prev, product]);
+    this.cart.update(prev => [...prev, product]);
   }
 }

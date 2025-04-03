@@ -1,5 +1,5 @@
-name: "Flujo CI-Test"
-run-name: "Flujo CI - Test"
+name: 'Flujo CI-Test'
+run-name: 'Flujo CI - Test'
 on:
   push:
     branches: [master]
@@ -11,20 +11,20 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout repositorio"
+      - name: 'Checkout repositorio'
         uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f #v3: v3.4.0
-      - name: "Configurar Node 18"
+      - name: 'Configurar Node 18'
         uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c #v3: v3.6.0
         with:
           node-version: 18
-      - name: "Instalar CLI de Angular"
+      - name: 'Instalar CLI de Angular'
         run: npm install -g @angular/cli@$ANGULAR_CLI_VERSION
-      - name: "Instalar dependencias"
+      - name: 'Instalar dependencias'
         run: |
           npm install --ignore-scripts
           cd frontend
           npm install --ignore-scripts --legacy-peer-deps
-      - name: "Lint"
+      - name: 'Lint'
         run: npm run lint
       # - name: "Lint configuraciones personalizadas"
       #   run: >
