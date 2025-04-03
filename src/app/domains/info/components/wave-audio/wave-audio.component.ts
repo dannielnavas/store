@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
+  afterNextRender,
   Component,
   ElementRef,
   input,
@@ -16,22 +16,34 @@ import WaveSurfer from 'wavesurfer.js';
   templateUrl: './wave-audio.component.html',
   styleUrl: './wave-audio.component.css',
 })
-export class WaveAudioComponent implements AfterViewInit {
+export class WaveAudioComponent {
   readonly url = input.required<string>();
   // @ViewChild('wave') waveform!: ElementRef
   $waveContainerRef = viewChild.required<ElementRef<HTMLDivElement>>('wave');
   private ws!: WaveSurfer;
   isPlaying = signal(false); // signal is a function that returns a signal
 
-  ngAfterViewInit() {
-    this.ws = WaveSurfer.create({
-      url: this.url(),
-      // container: this.waveform.nativeElement,
-      container: this.$waveContainerRef().nativeElement,
+  constructor() {
+    afterNextRender(() => {
+      this.ws = WaveSurfer.create({
+        url: this.url(),
+        // container: this.waveform.nativeElement,
+        container: this.$waveContainerRef().nativeElement,
+      });
+      this.ws.on('play', () => (this.isPlaying = signal(true)));
+      this.ws.on('pause', () => (this.isPlaying = signal(false)));
     });
-    this.ws.on('play', () => (this.isPlaying = signal(true)));
-    this.ws.on('pause', () => (this.isPlaying = signal(false)));
   }
+  // se pasa al afterNextRender para que se ejecute después de renderizar esto en ssr
+  // ngAfterViewInit() {
+  //   this.ws = WaveSurfer.create({
+  //     url: this.url(),
+  //     // container: this.waveform.nativeElement,
+  //     container: this.$waveContainerRef().nativeElement,
+  //   });
+  //   this.ws.on('play', () => (this.isPlaying = signal(true)));
+  //   this.ws.on('pause', () => (this.isPlaying = signal(false)));
+  // }
 
   playPause() {
     this.ws.playPause();

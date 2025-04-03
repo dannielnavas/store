@@ -4,6 +4,7 @@ import {
   Component,
   OnDestroy,
   OnInit,
+  afterNextRender,
   computed,
   effect,
   input,
@@ -24,7 +25,7 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
   // $newMessages = linkedSignal(() => this.$messages());
 
   $counter = signal(0);
-  counterRef: ReturnType<typeof setInterval> | undefined;
+  counterRef: number | null = null;
 
   constructor() {
     // No async code here
@@ -40,6 +41,14 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
     effect(() => {
       this.$messages();
       this.doSomethingTwo();
+    });
+
+    afterNextRender(() => {
+      // corre todo después de renderizar	 cuando ya esta del lado del cliente
+      this.counterRef = window.setInterval(() => {
+        console.log('counter', this.$counter);
+        this.$counter.update((statePrev: number) => statePrev + 1);
+      }, this.$duration());
     });
   }
 
@@ -68,11 +77,6 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('duration ', this.$duration());
     console.log('message', this.$messages());
     console.log('-'.repeat(50));
-
-    this.counterRef = setInterval(() => {
-      console.log('counter', this.$counter);
-      this.$counter.update((statePrev: number) => statePrev + 1);
-    }, this.$duration());
   }
 
   ngAfterViewInit() {
@@ -87,7 +91,9 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
     // async code here
     console.log('ngOnDestroy');
     console.log('-'.repeat(50));
-    clearInterval(this.counterRef);
+    if (this.counterRef) {
+      window.clearInterval(this.counterRef);
+    }
   }
 
   doSomething() {
