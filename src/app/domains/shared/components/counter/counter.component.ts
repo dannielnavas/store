@@ -24,7 +24,7 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
   // $newMessages = linkedSignal(() => this.$messages());
 
   $counter = signal(0);
-  counterRef: number | undefined;
+  counterRef: ReturnType<typeof setInterval> | undefined;
 
   constructor() {
     // No async code here
