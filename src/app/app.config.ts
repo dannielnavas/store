@@ -8,6 +8,10 @@ import {
 
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
+import {
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   // una vex termine la carga inicial empieza a descargar todo el resto de los modulos withPreloading(PreloadAllModules)
@@ -18,5 +22,6 @@ export const appConfig: ApplicationConfig = {
       withPreloading(PreloadAllModules)
     ),
     provideHttpClient(),
+    provideClientHydration(withEventReplay()),
   ],
 };
