@@ -6,12 +6,12 @@ import {
   withPreloading,
 } from '@angular/router';
 
-import { provideHttpClient } from '@angular/common/http';
-import { routes } from './app.routes';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   // una vex termine la carga inicial empieza a descargar todo el resto de los modulos withPreloading(PreloadAllModules)
@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withPreloading(PreloadAllModules)
     ),
-    provideHttpClient(),
+    provideHttpClient(withFetch()), // withFetch() es el que se encarga de hacer las peticiones http del lado del servidor
     provideClientHydration(withEventReplay()),
   ],
 };
