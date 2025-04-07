@@ -22,6 +22,6 @@ export const appConfig: ApplicationConfig = {
       withPreloading(PreloadAllModules)
     ),
     provideHttpClient(withFetch()), // withFetch() es el que se encarga de hacer las peticiones http del lado del servidor
-    provideClientHydration(withEventReplay()),
+    provideClientHydration(withEventReplay()), // aquí hace la rehydration del lado del cliente
   ],
 };
