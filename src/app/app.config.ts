@@ -14,7 +14,7 @@ import {
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  // una vex termine la carga inicial empieza a descargar todo el resto de los modulos withPreloading(PreloadAllModules)
+  // una vex termine la carga inicial empieza a descargar todo el resto de los módulos withPreloading(PreloadAllModules)
   providers: [
     provideRouter(
       routes,
