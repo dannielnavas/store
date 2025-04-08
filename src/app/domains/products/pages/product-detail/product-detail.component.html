@@ -61,5 +61,12 @@
     </div>
   </div>
 
-  <app-related [slug]="data.slug" />
+  <div class="mb-80"></div>
+  <!-- when data  esto es cuando data este definido-->
+  <!-- on viewport este es cuando el componente related este en el viewport -->
+  @defer (on viewport) {
+    <app-related [slug]="data.slug" />
+  } @placeholder {
+    <p>Loading...</p>
+  }
 }
