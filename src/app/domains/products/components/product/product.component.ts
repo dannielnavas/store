@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
 import { Product } from '@shared/models/product.model';
 import { ReversePipe } from '@shared/pipes/reverse.pipe';
@@ -16,6 +16,7 @@ import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent {
   // @Input({ required: true }) image: string = '';

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { CounterComponent } from '@shared/components/counter/counter.component';
@@ -18,6 +18,7 @@ import { WaveAudioComponent } from '../../components/wave-audio/wave-audio.compo
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class AboutComponent {
   duration = signal(1000);

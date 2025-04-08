@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 
@@ -8,5 +8,6 @@ import { HeaderComponent } from '../header/header.component';
   imports: [CommonModule, HeaderComponent, RouterModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {}

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   OnDestroy,
   OnInit,
@@ -17,6 +18,7 @@ import {
   imports: [CommonModule],
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
   $duration = input.required<number>({ alias: 'duration' });

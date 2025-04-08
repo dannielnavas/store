@@ -1,5 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
   effect,
@@ -19,6 +20,7 @@ import { MetaTagsService } from '../../../shared/services/meta-tags.service';
   imports: [CommonModule, NgOptimizedImage, RelatedComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ProductDetailComponent implements OnInit {
   private productServices = inject(ProductService);

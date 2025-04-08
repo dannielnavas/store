@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   afterNextRender,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   input,
@@ -15,6 +16,7 @@ import WaveSurfer from 'wavesurfer.js';
   imports: [CommonModule],
   templateUrl: './wave-audio.component.html',
   styleUrl: './wave-audio.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WaveAudioComponent {
   readonly url = input.required<string>();

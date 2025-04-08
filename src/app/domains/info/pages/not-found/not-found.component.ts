@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
@@ -7,5 +7,6 @@ import { RouterLinkWithHref } from '@angular/router';
   imports: [CommonModule, RouterLinkWithHref],
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class NotFoundComponent {}
