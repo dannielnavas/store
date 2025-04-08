@@ -47,10 +47,7 @@
             "styles": ["src/styles.css"],
             "scripts": [],
             "server": "src/main.server.ts",
-            "prerender": {
-              "discoverRoutes": false,
-              "routesFile": "routes.txt"
-            },
+            "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
             }
