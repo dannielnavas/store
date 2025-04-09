@@ -53,9 +53,6 @@ importers:
       wavesurfer.js:
         specifier: 7.4.6
         version: 7.4.6
-      zone.js:
-        specifier: ~0.15.0
-        version: 0.15.0
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^19.2.4

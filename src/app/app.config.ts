@@ -31,5 +31,6 @@ export const appConfig: ApplicationConfig = {
     // withIncrementalHydration esto hace la rehidratación incremental, es decir, va rehidratando los componentes a medida que se van viendo en la pantalla
 
     provideExperimentalZonelessChangeDetection(), // esto es para que no use el zone.js, es decir, no use el change detection de angular tradicional
+    // testing aun permanece en el zone.js
   ],
 };
